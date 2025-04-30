@@ -1,0 +1,115 @@
+<header class="fixed top-0 left-0 right-0 bg-black text-white px-4 md:px-6 lg:px-8 py-4 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="/" class="text-lg font-semibold flex items-center">
+          TeHacemos <span class="text-purple-400 ml-1">&lt;/&gt;</span>
+        </a>
+      </div>
+      
+      <!-- El Menu Hamburguesa para el responsive -->
+      <button id="menu-toggle" class="md:hidden flex items-center relative w-6 h-6" aria-label="Toggle menu">
+        <!-- El icono lo transfromamos en la x esa para cerra jasja -->
+        <span id="bar1" class="absolute h-0.5 w-full bg-white transform transition-all duration-300 ease-in-out origin-center"></span>
+        <span id="bar2" class="absolute h-0.5 w-full bg-white transform transition-all duration-300 ease-in-out origin-center"></span>
+        <span id="bar3" class="absolute h-0.5 w-full bg-white transform transition-all duration-300 ease-in-out origin-center"></span>
+      </button>
+      
+      <!-- La Navegacion  -->
+      <nav class="hidden md:block">
+        <ul class="flex space-x-6">
+          <li><a href="#Inicio" class="hover:text-purple-400 transition-colors">Inicio</a></li>
+          <li><a href="#QueHacemos" class="hover:text-purple-400 transition-colors">¿Qué hacemos?</a></li>
+          <li><a href="#QuienesSomos" class="hover:text-purple-400 transition-colors">¿Quiénes somos?</a></li>
+          <li><a href="#Dudas" class="hover:text-purple-400 transition-colors">¿Dudas?</a></li>
+        </ul>
+      </nav>
+      
+      <div class="hidden md:block">
+        <a href="#contacto" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition-colors">
+          Contactanos
+        </a>
+      </div>
+    </div>
+    
+    <!-- Menu responsive-->
+    <div id="mobile-menu" class="hidden md:hidden fixed left-0 right-0 bg-black z-40 transition-all duration-300 ease-in-out">
+      <nav class="container mx-auto px-4 pt-4 pb-8">
+        <ul class="flex flex-col space-y-4">
+          <li><a href="#Inicio" class="block hover:text-purple-400 transition-colors py-2 text-lg">Inicio</a></li>
+          <li><a href="#QueHacemos" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Qué hacemos?</a></li>
+          <li><a href="#QuienesSomos" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Quiénes somos?</a></li>
+          <li><a href="#Dudas" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Dudas?</a></li>
+          <li class="pt-4">
+            <a href="#contacto" class="block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition-colors text-center">
+              Contactanos
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="h-16"></div>
+  
+  <script>
+    // Esto es codigo de ia para optmizar el tiempo y errores :v)
+    // References to elements
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    
+    // Initial positioning of bars for hamburger icon
+    if (bar1 && bar2 && bar3) {
+      bar1.style.top = '25%';
+      bar2.style.top = '50%';
+      bar3.style.top = '75%';
+    }
+    
+    // Toggle mobile menu and animate hamburger to X
+    if (menuToggle && mobileMenu && bar1 && bar2 && bar3) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Toggle body scroll when menu is open
+        if (!mobileMenu.classList.contains('hidden')) {
+          document.body.style.overflow = 'hidden';
+          
+          // Animate to X
+          bar1.style.top = '50%';
+          bar3.style.top = '50%';
+          bar1.style.transform = 'rotate(45deg)';
+          bar2.style.opacity = '0';
+          bar3.style.transform = 'rotate(-45deg)';
+        } else {
+          document.body.style.overflow = '';
+          
+          // Animate back to hamburger
+          bar1.style.top = '25%';
+          bar2.style.top = '50%';
+          bar3.style.top = '75%';
+          bar1.style.transform = 'rotate(0)';
+          bar2.style.opacity = '1';
+          bar3.style.transform = 'rotate(0)';
+        }
+      });
+      
+      // Close menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          document.body.style.overflow = '';
+          
+          // Animate back to hamburger
+          bar1.style.top = '25%';
+          bar2.style.top = '50%';
+          bar3.style.top = '75%';
+          bar1.style.transform = 'rotate(0)';
+          bar2.style.opacity = '1';
+          bar3.style.transform = 'rotate(0)';
+        });
+      });
+    }
+  </script>
