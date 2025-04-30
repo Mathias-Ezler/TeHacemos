@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+    --color-oscuro: #111111;
+    --color-lila: #9b73f9;
+}

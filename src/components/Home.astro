@@ -1,0 +1,126 @@
+---
+// Componente Hero.astro
+---
+
+<main class="bg-oscuro text-white w-full">
+    <!-- Hero Section with Typing Effect -->
+    <section id="Inicio" class="pt-20 md:pt-24 lg:pt-28 pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto max-w-6xl">
+        <div class="max-w-4xl">
+          <h1 class="text-2xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+            Te hacemos 
+            <span class="text-lila">
+              &lt; <span id="typewriter" class="typing-text"></span>
+              <span class="typing-cursor text-lila">|</span> /&gt;
+            </span>
+          </h1>
+  
+          <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+            Somos tu equipo tech. Transformamos ideas en productos digitales
+            a medida. Desarrollo de software, diseño UX/UI y mantenimiento.
+          </p>
+  
+          <a href="#contacto" class="inline-block bg-violet-600 hover:bg-violet-700 text-white font-medium px-6 py-3 rounded transition-colors duration-300 focus:outline-none focus:ring-2  focus:ring-offset-black">
+            Quiero contactarme
+          </a>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Image Section -->
+    <section class="py-4 md:py-8 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto max-w-6xl">
+        <div class="overflow-hidden rounded-lg shadow-xl">
+          <img 
+            src="/img/equipo.png" 
+            alt="Equipo de desarrollo trabajando en conjunto"
+            class="w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+    </section>
+  
+    <!-- Divider Section -->
+    <section class="py-8 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto max-w-6xl">
+        <div class="border-t border-gray-800"></div>
+      </div>
+    </section>
+  
+    <!-- Estilos de la animación -->
+    <style>
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .typing-cursor {
+        display: inline-block;
+        animation: blink 1s step-end infinite;
+      }
+      .typing-text {
+        color: #8B5CF6;
+        display: inline-block;
+      }
+    </style>
+  
+    <!-- Script de typing embebido -->
+    <script type="text/javascript" is:inline>
+      const typingConfig = {
+        words: ['$Webs', '$Diseños', '$Soluciones'],
+        typeSpeed: 100,
+        deleteSpeed: 50,
+        delayBetweenWords: 1500,
+        loop: true
+      };
+  
+      let typewriterElement;
+      let timeoutId;
+      let state = {
+        wordIndex: 0,
+        charIndex: 0,
+        isDeleting: false
+      };
+  
+      function animateTyping() {
+        if (!typewriterElement) return;
+  
+        const currentWord = typingConfig.words[state.wordIndex];
+        state.charIndex = state.isDeleting 
+          ? state.charIndex - 1 
+          : state.charIndex + 1;
+  
+        typewriterElement.textContent = currentWord.substring(0, state.charIndex);
+  
+        let typingSpeed = state.isDeleting ? typingConfig.deleteSpeed : typingConfig.typeSpeed;
+  
+        if (!state.isDeleting && state.charIndex === currentWord.length) {
+          typingSpeed = typingConfig.delayBetweenWords;
+          state.isDeleting = true;
+        } else if (state.isDeleting && state.charIndex === 0) {
+          state.isDeleting = false;
+          state.wordIndex = (state.wordIndex + 1) % typingConfig.words.length;
+        }
+  
+        timeoutId = setTimeout(animateTyping, typingSpeed);
+      }
+  
+      function initTypingEffect() {
+        typewriterElement = document.getElementById('typewriter');
+        if (typewriterElement) {
+          state = { wordIndex: 0, charIndex: 0, isDeleting: false };
+          animateTyping();
+        }
+      }
+  
+      document.addEventListener('DOMContentLoaded', initTypingEffect);
+      window.addEventListener('beforeunload', () => timeoutId && clearTimeout(timeoutId));
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden' && timeoutId) {
+          clearTimeout(timeoutId);
+        } else if (document.visibilityState === 'visible' && typewriterElement) {
+          animateTyping();
+        }
+      });
+    </script>
+  </main>
+  
