@@ -1,5 +1,10 @@
-<header class="fixed top-0 left-0 right-0 bg-oscuro text-white px-4 md:px-6 lg:px-8 py-5 z-777">
-    <div class="container mx-auto flex justify-between items-center">
+---
+// Header.astro
+---
+
+<header class="fixed top-0 left-0 right-0 bg-oscuro text-white py-5 z-50">
+  <div class="max-w-[76rem] mx-auto px-6 lg:px-8">
+    <div class="flex justify-between items-center">
       <div class="flex items-center">
         <a href="/" class="text-lg font-semibold flex items-center">
           TeHacemos <span class="text-purple-400 ml-1">&lt;/&gt;</span>
@@ -8,13 +13,12 @@
       
       <!-- El Menu Hamburguesa para el responsive -->
       <button id="menu-toggle" class="md:hidden flex items-center relative w-6 h-6" aria-label="Toggle menu">
-        <!-- El icono lo transfromamos en la x esa para cerra jasja -->
         <span id="bar1" class="absolute h-0.5 w-full bg-white transform transition-all duration-300 ease-in-out origin-center"></span>
         <span id="bar2" class="absolute h-0.5 w-full bg-white transform transition-all duration-300 ease-in-out origin-center"></span>
         <span id="bar3" class="absolute h-0.5 w-full bg-white transform transition-all duration-300 ease-in-out origin-center"></span>
       </button>
       
-      <!-- La Navegacion  -->
+      <!-- La Navegacion -->
       <nav class="hidden md:block">
         <ul class="flex space-x-6">
           <li><a href="#Inicio" class="hover:text-purple-400 transition-colors">Inicio</a></li>
@@ -30,29 +34,31 @@
         </a>
       </div>
     </div>
-    
-    <!-- Menu responsive-->
-    <div id="mobile-menu" class="hidden md:hidden fixed left-0 right-0 bg-black z-40 transition-all duration-300 ease-in-out">
-      <nav class="container mx-auto px-4 pt-4 pb-8">
-        <ul class="flex flex-col space-y-4">
-          <li><a href="#Inicio" class="block hover:text-purple-400 transition-colors py-2 text-lg">Inicio</a></li>
-          <li><a href="#QueHacemos" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Qué hacemos?</a></li>
-          <li><a href="#QuienesSomos" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Quiénes somos?</a></li>
-          <li><a href="#Dudas" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Dudas?</a></li>
-          <li class="pt-4">
-            <a href="#contacto" class="block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition-colors text-center">
-              Contactanos
-             </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  </div>
   
-  <div class="h-16"></div>
-  
-  <script>
-    // Esto es codigo de ia para optmizar el tiempo y errores :v)
+  <!-- Menu responsive-->
+  <div id="mobile-menu" class="hidden md:hidden fixed left-0 right-0 bg-black z-40 transition-all duration-300 ease-in-out">
+    <nav class="max-w-5xl mx-auto px-6 pt-4 pb-8">
+      <ul class="flex flex-col space-y-4">
+        <li><a href="#Inicio" class="block hover:text-purple-400 transition-colors py-2 text-lg">Inicio</a></li>
+        <li><a href="#QueHacemos" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Qué hacemos?</a></li>
+        <li><a href="#QuienesSomos" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Quiénes somos?</a></li>
+        <li><a href="#Dudas" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Dudas?</a></li>
+        <li class="pt-4">
+          <a href="#contacto" class="block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition-colors text-center">
+            Contactanos
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="h-16"></div>
+
+<script>
+  // Codigo para el funcionamiento del menu responsive
+  document.addEventListener('DOMContentLoaded', () => {
     // References to elements
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -112,4 +118,5 @@
         });
       });
     }
-  </script>
+  });
+</script>
