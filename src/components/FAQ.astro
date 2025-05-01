@@ -1,0 +1,129 @@
+---
+// FaqSection.astro
+const faqs = [
+  {
+    id: 1,
+    question: "Pregunta Nro. 1: ¿Qué tipo de páginas web desarrollan?",
+    answer: "Creamos desde landing pages simples hasta sitios personalizados y eCommerce. Podemos adaptar el diseño y funcionalidades a lo que necesites: presentación de servicios, catálogo, contacto con WhatsApp, etc."
+  },
+  {
+    id: 2,
+    question: "Pregunta Nro. 2: ¿Cuánto tarda en estar lista una página web?",
+    answer: "Depende del proyecto. Para una landing page simple, el plazo es de 5 a 10 días hábiles. Si incluye automatizaciones o desarrollo más personalizado, puede extenderse. Siempre te avisamos los tiempos con claridad."
+  },
+  {
+    id: 3,
+    question: "Pregunta Nro. 3: ¿Puedo pedir actualizaciones después de la entrega?",
+    answer: "¡Claro! Ofrecemos mantenimiento opcional para que siempre tengas tu sitio actualizado, seguro y funcionando bien. Podés elegir soporte mensual o solo cuando lo necesites."
+  },
+  {
+    id: 4,
+    question: "Pregunta Nro. 4: ¿Puedo tener un dominio con mi nombre o el de mi negocio?",
+    answer: "Sí. Nosotros te ayudamos a registrar un dominio personalizado (.com, .com.py, etc.) y a vincularlo a tu sitio web. Podés tener una dirección profesional como www.tunegocio.com."
+  },
+  {
+    id: 5,
+    question: "Pregunta Nro. 5: ¿Necesito saber de tecnología para trabajar con ustedes?",
+    answer: "No. Nos encargamos de todo el proceso, desde el diseño hasta la publicación. Te explicamos cada paso y te acompañamos para que tomes decisiones sin complicaciones."
+  },
+  {
+    id: 6,
+    question: "Pregunta Nro. 6: ¿Qué formas de pago aceptan?",
+    answer: "Actualmente aceptamos pagos por transferencia bancaria. También podemos coordinar planes de pago según el alcance del proyecto."
+  },
+  {
+    id: 7,
+    question: "Pregunta Nro. 7: ¿Puedo usar mi página para vender productos o recibir reservas?",
+    answer: "Sí, desarrollamos funciones como carrito de compras, medios de pago online o formularios de reservas. Todo depende del objetivo de tu proyecto."
+  },
+  {
+    id: 8,
+    question: "Pregunta Nro. 8: ¿Mi página va a aparecer en Google?",
+    answer: "Sí. Aplicamos prácticas básicas de SEO (posicionamiento) para que tu sitio sea visible en buscadores. Si querés algo más avanzado, también ofrecemos ese servicio."
+  },
+  {
+    id: 9,
+    question: "Pregunta Nro. 9: ¿Puedo ver cómo va quedando mi página antes de que se publique?",
+    answer: "Sí, te mostramos avances durante el desarrollo para que puedas revisar y darnos tu opinión. Solo publicamos cuando estés conforme con el resultado."
+  },
+  {
+    id: 10,
+    question: "Pregunta Nro. 10: ¿Trabajan con personas independientes o solo con empresas?",
+    answer: "¡Trabajamos con ambos! Ayudamos a profesionales, emprendedores y empresas a tener presencia digital profesional, sin importar su tamaño."
+  },
+  {
+    id: 11,
+    question: "Pregunta Nro. 11: ¿Ustedes también se encargan del diseño del sitio?",
+    answer: "Sí. Además de programar, creamos un diseño personalizado acorde a tu rubro, estilo e identidad. Nos enfocamos en que se vea profesional y fácil de usar."
+  },
+  {
+    id: 12,
+    question: "Pregunta Nro. 12: ¿La web funciona en celular?",
+    answer: "Sí, todos nuestros desarrollos son responsivos, es decir, se adaptan perfectamente a computadoras, tablets y celulares."
+  }
+];
+---
+
+<section class="bg-[#1a1a1a] text-white py-16 px-6 md:px-12 lg:px-24">
+  <div class="max-w-6xl mx-auto">
+    <h3 class="text-purple-400 text-lg mb-2">¿Dudas?</h3>
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Tenés dudas? Te ayudamos a resolverlas</h2>
+    <p class="text-gray-300 mb-10">
+      ¿Querés saber cómo trabajamos, qué incluye cada servicio o cómo empezar tu proyecto? Acá respondemos las preguntas más frecuentes para que tomes decisiones con seguridad.
+    </p>
+
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <div class="faq-item border-b border-gray-700 pb-4" data-faq-id={faq.id}>
+          <div class="faq-question flex justify-between items-center cursor-pointer py-3">
+            <h3 class="text-lg font-medium">{faq.question}</h3>
+            <button class="faq-toggle w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center focus:outline-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="plus-icon h-4 w-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="minus-icon h-4 w-4 text-purple-400 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+              </svg>
+            </button>
+          </div>
+          <div class="faq-answer hidden mt-2 text-gray-400 text-sm leading-relaxed">
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Script para manejar la funcionalidad de acordeón
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    // Abrir el primer elemento por defecto
+    const firstItem = document.querySelector('.faq-item');
+    if (firstItem) {
+      const answer = firstItem.querySelector('.faq-answer');
+      const plusIcon = firstItem.querySelector('.plus-icon');
+      const minusIcon = firstItem.querySelector('.minus-icon');
+      
+      answer?.classList.remove('hidden');
+      plusIcon?.classList.add('hidden');
+      minusIcon?.classList.remove('hidden');
+    }
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const plusIcon = item.querySelector('.plus-icon');
+      const minusIcon = item.querySelector('.minus-icon');
+      
+      question?.addEventListener('click', () => {
+        // Toggle current item
+        answer?.classList.toggle('hidden');
+        plusIcon?.classList.toggle('hidden');
+        minusIcon?.classList.toggle('hidden');
+      });
+    });
+  });
+</script>
