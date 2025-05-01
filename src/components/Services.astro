@@ -1,0 +1,88 @@
+---
+// QueHacemos.astro
+---
+
+<!-- Contenedor envolvente para que la imagen flote sobre ambas secciones -->
+<div class="relative">
+
+    <!-- Sección superior -->
+    <section id="QueHacemos" class="bg-oscuro text-white py-16">
+      <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          <div>
+            <h2 class="text-lg text-purple-400 font-medium mb-2">¿Qué hacemos?</h2>
+            <h3 class="text-3xl md:text-4xl font-bold mb-6">Creamos soluciones digitales que se adaptan a vos</h3>
+            <p class="text-gray-300">
+              Brindamos un conjunto integral de servicios para que tu proyecto digital no solo funcione, sino que destaque. Nos enfocamos en construir productos que resuelvan problemas reales, con tecnología moderna y diseño centrado en el usuario.
+            </p>
+          </div>
+          <div class="flex flex-col space-y-8">
+            <!-- Servicio 1 -->
+            <div class="flex items-start space-x-4">
+              <div class="bg-purple-100 rounded-full p-3 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold mb-2">Desarrollo de software a medida</h4>
+                <p class="text-gray-300">
+                  Creamos aplicaciones web, móviles y sistemas personalizados. Nos adaptamos a tus necesidades con tecnología robusta y escalable.
+                </p>
+              </div>
+            </div>
+            <!-- Servicio 2 -->
+            <div class="flex items-start space-x-4">
+              <div class="bg-purple-100 rounded-full p-3 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold mb-2">Diseño UX/UI</h4>
+                <p class="text-gray-300">
+                  Diseñamos experiencias intuitivas y visualmente atractivas. Investigamos, prototipamos y validamos con foco en el usuario final.
+                </p>
+              </div>
+            </div>
+            <!-- Servicio 3 -->
+            <div class="flex items-start space-x-4">
+              <div class="bg-purple-100 rounded-full p-3 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold mb-2">Mantenimiento y soporte evolutivo</h4>
+                <p class="text-gray-300">
+                  Acompañamos tus productos en el tiempo, resolviendo errores, mejorando funcionalidades y asegurando su disponibilidad.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección con dos colores e imagen centrada -->
+    <div class="relative w-full">
+      <!-- Contenedor de los dos colores -->
+      <div class="flex flex-col w-full">
+        <!-- Color superior -->
+        <div class="w-full h-48 bg-oscuro"></div>
+        <!-- Color inferior -->
+        <div class="w-full h-90 bg-gris"></div>
+      </div>
+      
+      <!-- Imagen centrada sobre los dos colores -->
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+          <img 
+            src="/img/equipo.png" 
+            alt="Imagen destacada" 
+            class="w-full h-auto rounded-lg shadow-xl"
+          />
+        </div>
+      </div>
+    </div>
+</div>
