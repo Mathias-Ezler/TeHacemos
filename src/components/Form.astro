@@ -8,7 +8,7 @@ import Layout from "../layouts/Layout.astro"
         <!-- Imagen izquierda -->
         <div class="flex items-center justify-center">
           <img 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura%20de%20pantalla%202025-05-02%20182251-1K28hXMyLB6XllarriclSVTX26HP1U.png" 
+            src="/img/fondo3.png" 
             alt="Persona trabajando en laptop" 
             class="w-full max-w-md rounded-md"
           />
@@ -16,29 +16,29 @@ import Layout from "../layouts/Layout.astro"
         
         <!-- Formulario derecho -->
         <div class="flex flex-col">
-          <h2 class="text-3xl font-bold mb-2">Title</h2>
-          <p class="text-gray-400 mb-6">Lorem ipsum dolor sit amet consectetur.</p>
+          <h2 class="text-3xl font-bold mb-2">Contactanos !</h2>
+          <p class="text-gray-400 mb-6">Escribinos tu dudas o proyectos en mente, es GRATIS!</p>
           
           <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- Primera fila: Nombres y Apellidos -->
             <div class="space-y-2">
-              <label for="nombres" class="block text-sm">Nombres</label>
+              <label for="nombres" class="block text-sm">Nombre</label>
               <input 
                 type="text" 
                 id="nombres" 
-                placeholder="Tus nombres" 
-                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Nombre" 
+                class="w-full bg-gris border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
             
             <div class="space-y-2">
-              <label for="apellidos" class="block text-sm">Apellidos</label>
+              <label for="apellidos" class="block text-sm">Apellido</label>
               <input 
                 type="text" 
                 id="apellidos" 
-                placeholder="Tus apellidos" 
-                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              />
+                placeholder="Apellido" 
+                class="w-full bg-gris border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
             </div>
             
             <!-- Correo (ancho completo) -->
@@ -48,7 +48,7 @@ import Layout from "../layouts/Layout.astro"
                 type="email" 
                 id="correo" 
                 placeholder="Ej: abc@gmail.com" 
-                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                class="w-full bg-gris border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
             
@@ -59,8 +59,8 @@ import Layout from "../layouts/Layout.astro"
                 <div class="relative">
                   <select 
                     id="pais" 
-                    class="appearance-none bg-gray-800 border border-gray-700 rounded-l px-3 py-2 pr-8 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  >
+                    class="w-full bg-gris border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    >
                     <option value="PY">PY</option>
                     <option value="AR">AR</option>
                     <option value="BR">BR</option>
@@ -76,9 +76,9 @@ import Layout from "../layouts/Layout.astro"
                 <input 
                   type="tel" 
                   id="celular" 
-                  placeholder="(+595) 972 782 266" 
-                  class="flex-1 bg-gray-800 border border-gray-700 border-l-0 rounded-r px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                />
+                  placeholder="(+595) 912 123 456" 
+                  class="w-full bg-gris border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  />
               </div>
             </div>
             
@@ -89,7 +89,7 @@ import Layout from "../layouts/Layout.astro"
                 id="mensaje" 
                 rows="4" 
                 placeholder="Algo que sea importante saberlo" 
-                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                class="w-full bg-gris border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
               ></textarea>
             </div>
             
@@ -97,7 +97,7 @@ import Layout from "../layouts/Layout.astro"
             <div class="col-span-2 mt-2">
               <button 
                 type="submit" 
-                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded transition-colors"
+                class="w-full cursor-pointer bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded transition-colors"
               >
                 Enviar formulario
               </button>
@@ -105,6 +105,20 @@ import Layout from "../layouts/Layout.astro"
           </form>
         </div>
       </div>
-      <h1>O</h1>
+         <!-- Separador y botón WhatsApp -->
+        <div class="text-center mt-8">
+          <p class="mb-4 text-gray-400">O si preferís, escribinos directamente al WhatsApp:</p>
+          <a 
+            href="https://wa.me/+595982211731?text=Hola%20quiero%20más%20información%20sobre%20su%20sitio" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded transition"
+          >
+            <svg class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <path d="M16.002 3C9.384 3 4 8.384 4 15.002c0 2.648.874 5.098 2.346 7.08L4 29l7.173-2.28A11.955 11.955 0 0 0 16.002 27C22.617 27 28 21.616 28 15.002 28 8.384 22.617 3 16.002 3zm0 21c-1.794 0-3.474-.48-4.937-1.314l-.35-.202-4.267 1.356 1.395-4.157-.219-.347A8.947 8.947 0 0 1 7 15.002C7 9.935 11.934 5 16.002 5 21.064 5 25 9.936 25 15.002 25 20.063 21.064 24 16.002 24zm4.89-6.537c-.265-.133-1.564-.773-1.807-.86-.242-.087-.418-.133-.593.132-.176.265-.68.86-.834 1.037-.153.176-.31.198-.575.066-.265-.132-1.12-.412-2.13-1.314-.787-.7-1.319-1.565-1.472-1.83-.154-.264-.017-.407.115-.538.118-.117.264-.31.396-.465.132-.154.176-.264.264-.44.087-.176.044-.33-.022-.462-.066-.132-.593-1.43-.814-1.958-.215-.518-.433-.448-.593-.456h-.5c-.154 0-.396.056-.604.264-.208.208-.79.773-.79 1.884 0 1.11.81 2.184.922 2.337.11.154 1.592 2.426 3.86 3.402.54.232.962.37 1.29.474.542.172 1.034.148 1.422.09.434-.065 1.32-.54 1.507-1.06.187-.52.187-.964.132-1.06-.055-.1-.242-.154-.507-.287z"/>
+            </svg>
+            Contactar por WhatsApp
+          </a>
+        </div>
     </div>
   </section>
