@@ -1,0 +1,43 @@
+---
+// Footer.astro
+---
+
+<footer class="bg-black text-white py-12">
+    <div class="container mx-auto px-4">
+      <!-- Separador superior -->
+      <div class="border-t border-gray-800 mb-8"></div>
+      
+      <!-- Logo y navegación principal -->
+      <div class="mb-8">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-6">
+          <div class="text-xl font-semibold">
+            TeHacemos <span class="text-purple-500">&lt;/&gt;</span>
+          </div>
+          
+          <nav>
+            <ul class="flex flex-wrap gap-6 text-sm text-gray-400">
+              <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+              <li><a href="/que-hacemos" class="hover:text-white transition-colors">¿Qué hacemos?</a></li>
+              <li><a href="/quienes-somos" class="hover:text-white transition-colors">¿Quiénes somos?</a></li>
+              <li><a href="/dudas" class="hover:text-white transition-colors">¿Dudas?</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      
+      <!-- Separador inferior y copyright -->
+      <div class="border-t border-gray-800 pt-8">
+        <div class="flex flex-col md:flex-row md:justify-between gap-4 text-xs text-gray-400">
+          <div>
+            &copy; 2025 TeHacemos. Derechos reservados
+          </div>
+          
+          <div class="flex gap-6">
+            <a href="/terminos" class="hover:text-white transition-colors">Términos y condiciones</a>
+            <a href="/privacidad" class="hover:text-white transition-colors">Políticas de privacidad</a>
+            <a href="/cookies" class="hover:text-white transition-colors">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>

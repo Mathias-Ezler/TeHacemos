@@ -1,0 +1,110 @@
+---
+// ContactSection.astro
+import Layout from "../layouts/Layout.astro"
+---
+// Sección de contacto con formulario y imagen
+<section class="bg-black text-white py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Imagen izquierda -->
+        <div class="flex items-center justify-center">
+          <img 
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura%20de%20pantalla%202025-05-02%20182251-1K28hXMyLB6XllarriclSVTX26HP1U.png" 
+            alt="Persona trabajando en laptop" 
+            class="w-full max-w-md rounded-md"
+          />
+        </div>
+        
+        <!-- Formulario derecho -->
+        <div class="flex flex-col">
+          <h2 class="text-3xl font-bold mb-2">Title</h2>
+          <p class="text-gray-400 mb-6">Lorem ipsum dolor sit amet consectetur.</p>
+          
+          <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Primera fila: Nombres y Apellidos -->
+            <div class="space-y-2">
+              <label for="nombres" class="block text-sm">Nombres</label>
+              <input 
+                type="text" 
+                id="nombres" 
+                placeholder="Tus nombres" 
+                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+            
+            <div class="space-y-2">
+              <label for="apellidos" class="block text-sm">Apellidos</label>
+              <input 
+                type="text" 
+                id="apellidos" 
+                placeholder="Tus apellidos" 
+                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+            
+            <!-- Correo (ancho completo) -->
+            <div class="space-y-2 col-span-2">
+              <label for="correo" class="block text-sm">Correo</label>
+              <input 
+                type="email" 
+                id="correo" 
+                placeholder="Ej: abc@gmail.com" 
+                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+            
+            <!-- Celular (ancho completo) -->
+            <div class="space-y-2 col-span-2">
+              <label for="celular" class="block text-sm">Celular</label>
+              <div class="flex">
+                <div class="relative">
+                  <select 
+                    id="pais" 
+                    class="appearance-none bg-gray-800 border border-gray-700 rounded-l px-3 py-2 pr-8 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  >
+                    <option value="PY">PY</option>
+                    <option value="AR">AR</option>
+                    <option value="BR">BR</option>
+                    <option value="UY">UY</option>
+                    <option value="CL">CL</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                    </svg>
+                  </div>
+                </div>
+                <input 
+                  type="tel" 
+                  id="celular" 
+                  placeholder="(+595) 972 782 266" 
+                  class="flex-1 bg-gray-800 border border-gray-700 border-l-0 rounded-r px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+              </div>
+            </div>
+            
+            <!-- Mensaje (ancho completo) -->
+            <div class="space-y-2 col-span-2">
+              <label for="mensaje" class="block text-sm">Algún mensaje</label>
+              <textarea 
+                id="mensaje" 
+                rows="4" 
+                placeholder="Algo que sea importante saberlo" 
+                class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              ></textarea>
+            </div>
+            
+            <!-- Botón de envío (ancho completo) -->
+            <div class="col-span-2 mt-2">
+              <button 
+                type="submit" 
+                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded transition-colors"
+              >
+                Enviar formulario
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
