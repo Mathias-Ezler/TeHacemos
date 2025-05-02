@@ -5,3 +5,8 @@
     --color-lila: #9b73f9;
     --color-gris: #252526;
 }
+
+body {
+    font-family: 'Inter', sans-serif;
+  }
+  

@@ -10,6 +10,12 @@ import Footer from '../components/Footer.astro'
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<!-- Tipografía Inter -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">	  
+
 		<title>Te Hacemos</title>
 	</head>
 	<body>
@@ -17,32 +23,60 @@ import Footer from '../components/Footer.astro'
 		<slot />
 		<Footer />
 		<!-- Botones flotantes -->
-		<div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
-			<!-- Botón de WhatsApp -->
-			<a 
-				href="https://wa.me/+595972782266" 
-				target="_blank" 
-				rel="noopener noreferrer" 
-				class="flex items-center justify-center w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-				aria-label="Contactar por WhatsApp"
-			>
-				<img src="/img/wlogo.jpeg" alt="" class="w-10 h-10 rounded-full object-cover">
-			</a>
-		
-			<!-- Botón de flecha hacia arriba -->
-			<a 
-				href="#Inicio" 
-				class="flex items-center justify-center w-14 h-14 bg-purple-600 hover:bg-purple-700 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-				aria-label="Volver al inicio"
-			>
-				<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-					<path d="m18 15-6-6-6 6" />
-				</svg>
-			</a>
-		</div>
-		
+<div class="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
+	<!-- Botón de flecha hacia arriba -->
+	<a 
+		id="scrollTopBtn"
+		href="#Inicio" 
+		class="opacity-0 pointer-events-none flex items-center justify-center w-14 h-14 bg-purple-600 hover:bg-purple-700 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+		aria-label="Volver al inicio"
+	>
+		<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<path d="m18 15-6-6-6 6" />
+		</svg>
+	</a>
+	<!-- Botón de WhatsApp -->
+	<a 
+		href="https://wa.me/+595982211731" 
+		target="_blank" 
+		rel="noopener noreferrer" 
+		class="flex items-center justify-center w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+		aria-label="Contactar por WhatsApp"
+	>
+		<img src="/img/wlogo.jpeg" alt="" class="w-10 h-10 rounded-full object-cover">
+	</a>
+</div>
 	</body>
+	<script>
+		let lastScrollTop = 0;
+		const scrollBtn = document.getElementById("scrollTopBtn");
+	
+		window.addEventListener("scroll", () => {
+			const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+	
+			if (currentScroll < lastScrollTop && currentScroll > 100) {
+				// Scroll hacia arriba
+				if (scrollBtn) {
+					scrollBtn.classList.remove("opacity-0", "pointer-events-none");
+					scrollBtn.classList.add("opacity-100", "pointer-events-auto");
+				}
+			} else {
+				// Scroll hacia abajo o arriba cerca del top
+				if (scrollBtn) {
+					scrollBtn.classList.remove("opacity-100", "pointer-events-auto");
+					scrollBtn.classList.add("opacity-0", "pointer-events-none");
+				}
+			}
+			
+			lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+		});
+	</script>
+	
 </html>
+
+
+
+
 <style>
 	html {
 		scroll-behavior: smooth;
