@@ -63,8 +63,7 @@ const faqs = [
   }
 ];
 ---
-
-<section class="bg-gris text-white py-16 px-6 md:px-12 lg:px-24">
+<section class="bg-gris text-white py-16 px-6 md:px-12 lg:px-24" id="Dudas">
   <div class="max-w-6xl mx-auto">
     <h3 class="text-purple-400 text-lg mb-2">¿Dudas?</h3>
     <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Tenés dudas? Te ayudamos a resolverlas</h2>
@@ -77,7 +76,7 @@ const faqs = [
         <div class="faq-item border-b border-gray-700 pb-4" data-faq-id={faq.id}>
           <div class="faq-question flex justify-between items-center cursor-pointer py-3">
             <h3 class="text-lg font-medium">{faq.question}</h3>
-            <button class="faq-toggle w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center focus:outline-none">
+            <button class="faq-toggle w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center focus:outline-none transition-transform duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" class="plus-icon h-4 w-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
@@ -86,8 +85,10 @@ const faqs = [
               </svg>
             </button>
           </div>
-          <div class="faq-answer hidden mt-2 text-gray-400 text-sm leading-relaxed">
-            <p>{faq.answer}</p>
+          <div class="faq-answer overflow-hidden max-h-0">
+            <div class="faq-answer-content py-2 text-gray-400 text-sm leading-relaxed">
+              <p>{faq.answer}</p>
+            </div>
           </div>
         </div>
       ))}
@@ -95,19 +96,69 @@ const faqs = [
   </div>
 </section>
 
+<style>
+  .faq-toggle.active {
+    transform: rotate(180deg);
+    background-color: rgb(139, 92, 246); /* bg-purple-500 */
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+  }
+  
+  .faq-answer {
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+  }
+  
+  .faq-answer.active {
+    max-height: 500px; /* Alto suficiente para la mayoría de respuestas */
+    opacity: 1;
+  }
+  
+  .faq-answer-content {
+    transform: translateY(-10px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .faq-answer.active .faq-answer-content {
+    transform: translateY(0);
+  }
+</style>
+
 <script>
-  // Script para manejar la funcionalidad de acordeón
+  // Script para manejar la funcionalidad de acordeón con animación
   document.addEventListener('DOMContentLoaded', () => {
     const faqItems = document.querySelectorAll('.faq-item');
+    
+    // Función para cerrar todos los items excepto el actual
+    const closeAllExcept = (currentItem: HTMLElement) => {
+      faqItems.forEach(item => {
+        if (item !== currentItem) {
+          const answer = item.querySelector('.faq-answer');
+          const toggle = item.querySelector('.faq-toggle');
+          const plusIcon = item.querySelector('.plus-icon');
+          const minusIcon = item.querySelector('.minus-icon');
+          
+          answer?.classList.remove('active');
+          toggle?.classList.remove('active');
+          
+          // Pequeño retraso para el cambio de iconos para que coincida con la animación
+          setTimeout(() => {
+            plusIcon?.classList.remove('hidden');
+            minusIcon?.classList.add('hidden');
+          }, 100);
+        }
+      });
+    };
     
     // Abrir el primer elemento por defecto
     const firstItem = document.querySelector('.faq-item');
     if (firstItem) {
       const answer = firstItem.querySelector('.faq-answer');
+      const toggle = firstItem.querySelector('.faq-toggle');
       const plusIcon = firstItem.querySelector('.plus-icon');
       const minusIcon = firstItem.querySelector('.minus-icon');
       
-      answer?.classList.remove('hidden');
+      answer?.classList.add('active');
+      toggle?.classList.add('active');
       plusIcon?.classList.add('hidden');
       minusIcon?.classList.remove('hidden');
     }
@@ -115,14 +166,29 @@ const faqs = [
     faqItems.forEach(item => {
       const question = item.querySelector('.faq-question');
       const answer = item.querySelector('.faq-answer');
+      const toggle = item.querySelector('.faq-toggle');
       const plusIcon = item.querySelector('.plus-icon');
       const minusIcon = item.querySelector('.minus-icon');
       
       question?.addEventListener('click', () => {
+        const isActive = answer?.classList.contains('active');
+        
+        // Cerrar todos los demás elementos
+        closeAllExcept(item as HTMLElement);
+        
         // Toggle current item
-        answer?.classList.toggle('hidden');
-        plusIcon?.classList.toggle('hidden');
-        minusIcon?.classList.toggle('hidden');
+        answer?.classList.toggle('active');
+        toggle?.classList.toggle('active');
+        
+        if (isActive) {
+          setTimeout(() => {
+            plusIcon?.classList.remove('hidden');
+            minusIcon?.classList.add('hidden');
+          }, 100);
+        } else {
+          plusIcon?.classList.add('hidden');
+          minusIcon?.classList.remove('hidden');
+        }
       });
     });
   });

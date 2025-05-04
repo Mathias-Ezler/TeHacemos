@@ -1,11 +1,19 @@
-
 <header class="fixed top-0 left-0 right-0 bg-oscuro text-white py-5 z-50">
-  <div class="max-w-[76rem] mx-auto px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
     <div class="flex justify-between items-center">
       <div class="flex items-center">
         <a href="/" class="text-lg font-semibold flex items-center">
           TeHacemos <span class="text-purple-400 ml-1">&lt;/&gt;</span>
         </a>
+        
+        <!-- La Navegación junto al logo -->
+        <nav class="hidden md:block ml-8">
+          <ul class="flex space-x-6">
+            <li><a href="#Inicio" class="hover:text-purple-400 transition-colors">Inicio</a></li>
+            <li><a href="#QueHacemos" class="hover:text-purple-400 transition-colors">¿Qué hacemos?</a></li>
+            <li><a href="#About" class="hover:text-purple-400 transition-colors">¿Quiénes somos?</a></li>
+          </ul>
+        </nav>
       </div>
       
       <!-- El Menu Hamburguesa para el responsive -->
@@ -15,18 +23,9 @@
         <span id="bar3" class="absolute h-0.5 w-full bg-white transform transition-all duration-300 ease-in-out origin-center"></span>
       </button>
       
-      <!-- La Navegacion -->
-      <nav class="hidden md:block">
-        <ul class="flex space-x-6">
-          <li><a href="#Inicio" class="hover:text-purple-400 transition-colors">Inicio</a></li>
-          <li><a href="#QueHacemos" class="hover:text-purple-400 transition-colors">¿Qué hacemos?</a></li>
-          <li><a href="#About" class="hover:text-purple-400 transition-colors">¿Quiénes somos?</a></li>
-        </ul>
-      </nav>
-      
       <div class="hidden md:block">
         <a href="#contacto" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition-colors">
-          Contactanos
+          Contáctanos
         </a>
       </div>
     </div>
@@ -34,14 +33,14 @@
   
   <!-- Menu responsive-->
   <div id="mobile-menu" class="hidden md:hidden fixed left-0 right-0 bg-black z-40 transition-all duration-300 ease-in-out">
-    <nav class="max-w-5xl mx-auto px-6 pt-4 pb-8">
+    <nav class="max-w-6xl mx-auto px-6 pt-4 pb-8">
       <ul class="flex flex-col space-y-4">
         <li><a href="#Inicio" class="block hover:text-purple-400 transition-colors py-2 text-lg">Inicio</a></li>
         <li><a href="#QueHacemos" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Qué hacemos?</a></li>
         <li><a href="#About" class="block hover:text-purple-400 transition-colors py-2 text-lg">¿Quiénes somos?</a></li>
         <li class="pt-4">
           <a href="#contacto" class="block bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded transition-colors text-center">
-            Contactanos
+            Contáctanos
           </a>
         </li>
       </ul>
