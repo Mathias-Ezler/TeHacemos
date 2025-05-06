@@ -7,9 +7,9 @@
   <section id="Inicio" class="pt-20 md:pt-24 lg:pt-28 pb-8 md:pb-12 px-4 sm:px-6 lg:px-8">
     <div class="container mx-auto max-w-6xl">
       <div class="max-w-4xl">
-        <h1 class="text-2xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-          Te hacemos 
-          <span class="text-lila">
+        <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight flex flex-wrap items-center">
+          <span class="whitespace-nowrap mr-2">Te hacemos</span>
+          <span class="text-lila whitespace-nowrap">
             &lt; <span class="typing-container"><span id="typewriter" class="typing-text"></span></span>
             <span class="typing-cursor text-lila">|</span> /&gt;
           </span>
@@ -52,19 +52,31 @@
     /* Contenedor con altura fija para evitar saltos */
     .typing-container {
       display: inline-block;
-      min-width: 280px; /* Ancho mínimo que acomode la palabra más larga */
+      min-width: 100px; /* Base width for smallest screens */
     }
     
     /* Ajustes responsivos para el contenedor */
-    @media (max-width: 768px) {
+    @media (min-width: 480px) {
       .typing-container {
-        min-width: 180px; /* Ancho menor en móviles */
+        min-width: 140px;
       }
     }
     
-    @media (max-width: 480px) {
+    @media (min-width: 640px) {
       .typing-container {
-        min-width: 150px; /* Ancho aún menor en móviles pequeños */
+        min-width: 180px;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .typing-container {
+        min-width: 220px;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .typing-container {
+        min-width: 260px; /* Ancho para palabras largas en pantallas grandes */
       }
     }
 
@@ -87,8 +99,8 @@
   <!-- Script de typing mejorado -->
   <script type="text/javascript" is:inline>
     const typingConfig = {
-      words: ['Paginas Webs', 'Software a medida', 'Diseño UX/UI', 'Mantenimiento'],
-      typeSpeed: 100,
+      words: ['Pagina Web', 'Software a medida', 'Diseño UX/UI', 'Mantenimiento'],
+      typeSpeed: 50,
       deleteSpeed: 50,
       delayBetweenWords: 1500,
       loop: true
@@ -102,7 +114,7 @@
       isDeleting: false
     };
 
-    // Función para calcular el ancho del contenedor basado en la palabra más larga
+    // Función para calcular el ancho del contenedor basado en la palabra más larga y el tamaño de pantalla
     function setOptimalContainerWidth() {
       const typingContainer = document.querySelector('.typing-container');
       if (!typingContainer) return;
@@ -126,15 +138,30 @@
         maxWidth = Math.max(maxWidth, width);
       });
       
-      // Añadir un pequeño margen
-      maxWidth += 10;
+      // Añadir un pequeño margen y ajustar según el tamaño de pantalla
+      const screenWidth = window.innerWidth;
+      let adjustedWidth = maxWidth + 10;
       
-      // Ajustar el ancho del contenedor para dispositivos móviles
-      if (window.innerWidth <= 768) {
-        maxWidth = Math.min(maxWidth, window.innerWidth * 0.4);
+      // Ajustes específicos por tamaño de pantalla
+      if (screenWidth < 380) {
+        adjustedWidth = Math.min(adjustedWidth, screenWidth * 0.3);
+      } else if (screenWidth < 480) {
+        adjustedWidth = Math.min(adjustedWidth, screenWidth * 0.35);
+      } else if (screenWidth < 640) {
+        adjustedWidth = Math.min(adjustedWidth, screenWidth * 0.4);
+      } else if (screenWidth < 768) {
+        adjustedWidth = Math.min(adjustedWidth, screenWidth * 0.45);
       }
       
-      typingContainer.style.minWidth = `${maxWidth}px`;
+      // Asegurar un mínimo para cada tamaño de pantalla
+      const minWidth = screenWidth < 480 ? 100 : 
+                       screenWidth < 640 ? 140 : 
+                       screenWidth < 768 ? 180 : 
+                       screenWidth < 1024 ? 220 : 260;
+                       
+      adjustedWidth = Math.max(adjustedWidth, minWidth);
+      
+      typingContainer.style.minWidth = `${adjustedWidth}px`;
       document.body.removeChild(tempSpan);
     }
 

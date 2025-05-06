@@ -1,7 +1,17 @@
 ---
 // ContactSection.astro
 import Layout from "../layouts/Layout.astro"
+
+// Definimos los códigos de país y ejemplos de números
+const phoneData = {
+  PY: { code: "+595", example: "(+595) 981 123 456" },
+  AR: { code: "+54", example: "(+54) 11 1234 5678" },
+  BR: { code: "+55", example: "(+55) 11 91234 5678" },
+  UY: { code: "+598", example: "(+598) 99 123 456" },
+  CL: { code: "+56", example: "(+56) 9 1234 5678" }
+};
 ---
+
 <section class="bg-black text-white py-16" id="contacto">
     <div class="container mx-auto px-4 max-w-6xl">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -68,15 +78,13 @@ import Layout from "../layouts/Layout.astro"
                     <option value="CL">CL</option>
                   </select>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
-                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                    </svg>
+                    
                   </div>
                 </div>
                 <input 
                   type="tel" 
-                  id="celular" 
-                  placeholder="(+595) 912 123 456" 
+                  id="telefono" 
+                  placeholder="(+595) 981 123 456" 
                   class="w-3/4 bg-gris border border-gray-700 rounded-r px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
               </div>
@@ -125,3 +133,38 @@ import Layout from "../layouts/Layout.astro"
       </div>
     </div>
   </section>
+
+<script>
+  // Script para actualizar el placeholder del teléfono según el país seleccionado
+  document.addEventListener('DOMContentLoaded', () => {
+    const phoneData = {
+      PY: { code: "+595", example: "(+595) 981 123 456" },
+      AR: { code: "+54", example: "(+54) 11 1234 5678" },
+      BR: { code: "+55", example: "(+55) 11 91234 5678" },
+      UY: { code: "+598", example: "(+598) 99 123 456" },
+      CL: { code: "+56", example: "(+56) 9 1234 5678" }
+    };
+
+    const paisSelect = document.getElementById('pais');
+    const telefonoInput = document.getElementById('telefono');
+
+    // Función para actualizar el placeholder según el país seleccionado
+    function actualizarPlaceholder() {
+      const paisSeleccionado = (paisSelect as HTMLSelectElement)?.value;
+      if (!paisSeleccionado) return;
+
+      const data = phoneData[paisSeleccionado as keyof typeof phoneData];
+      if (data && telefonoInput instanceof HTMLInputElement) {
+        telefonoInput.placeholder = data.example;
+      }
+    }
+
+    // Actualizar cuando cambia la selección
+    if (paisSelect) {
+      paisSelect.addEventListener('change', actualizarPlaceholder);
+    }
+    
+    // También actualizar al cargar la página
+    actualizarPlaceholder();
+  });
+</script>
