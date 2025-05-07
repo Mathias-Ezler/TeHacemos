@@ -10,8 +10,9 @@
         <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight flex flex-wrap items-center">
           <span class="whitespace-nowrap mr-2">Te hacemos</span>
           <span class="text-lila whitespace-nowrap">
-            &lt; <span class="typing-container"><span id="typewriter" class="typing-text"></span></span>
-            <span class="typing-cursor text-lila">|</span> /&gt;
+            &lt; <span id="typing-animation" class="typing-animation">
+                <span id="typing-text" class="typing-text"></span><span class="typing-cursor">|</span><span> /&gt;</span>
+              </span>
           </span>
         </h1>
 
@@ -50,32 +51,33 @@
   <!-- Estilos de la animación -->
   <style>
     /* Contenedor con altura fija para evitar saltos */
-    .typing-container {
+    .typing-animation {
       display: inline-block;
       min-width: 100px; /* Base width for smallest screens */
+      position: relative;
     }
     
     /* Ajustes responsivos para el contenedor */
     @media (min-width: 480px) {
-      .typing-container {
+      .typing-animation {
         min-width: 140px;
       }
     }
     
     @media (min-width: 640px) {
-      .typing-container {
+      .typing-animation {
         min-width: 180px;
       }
     }
     
     @media (min-width: 768px) {
-      .typing-container {
+      .typing-animation {
         min-width: 220px;
       }
     }
     
     @media (min-width: 1024px) {
-      .typing-container {
+      .typing-animation {
         min-width: 260px; /* Ancho para palabras largas en pantallas grandes */
       }
     }
@@ -85,18 +87,18 @@
       50% { opacity: 0; }
     }
     
+    .typing-text {
+      color: #8B5CF6;
+    }
+    
     .typing-cursor {
       display: inline-block;
       animation: blink 1s step-end infinite;
-    }
-    
-    .typing-text {
       color: #8B5CF6;
-      display: inline-block;
     }
   </style>
 
-  <!-- Script de typing mejorado -->
+  <!-- Script de typing mejorado con cursor dinámico -->
   <script type="text/javascript" is:inline>
     const typingConfig = {
       words: ['Pagina Web', 'Software a medida', 'Diseño UX/UI', 'Mantenimiento'],
@@ -106,7 +108,8 @@
       loop: true
     };
 
-    let typewriterElement;
+    let typingAnimation;
+    let typingText;
     let timeoutId;
     let state = {
       wordIndex: 0,
@@ -116,31 +119,30 @@
 
     // Función para calcular el ancho del contenedor basado en la palabra más larga y el tamaño de pantalla
     function setOptimalContainerWidth() {
-      const typingContainer = document.querySelector('.typing-container');
-      if (!typingContainer) return;
+      if (!typingAnimation) return;
       
       // Crear un elemento temporal para medir el ancho
       const tempSpan = document.createElement('span');
       tempSpan.style.visibility = 'hidden';
       tempSpan.style.position = 'absolute';
       tempSpan.style.whiteSpace = 'nowrap';
-      tempSpan.style.fontSize = window.getComputedStyle(typewriterElement).fontSize;
-      tempSpan.style.fontFamily = window.getComputedStyle(typewriterElement).fontFamily;
-      tempSpan.style.fontWeight = window.getComputedStyle(typewriterElement).fontWeight;
+      tempSpan.style.fontSize = window.getComputedStyle(typingAnimation).fontSize;
+      tempSpan.style.fontFamily = window.getComputedStyle(typingAnimation).fontFamily;
+      tempSpan.style.fontWeight = window.getComputedStyle(typingAnimation).fontWeight;
       
       document.body.appendChild(tempSpan);
       
       // Encontrar la palabra más larga
       let maxWidth = 0;
       typingConfig.words.forEach(word => {
-        tempSpan.textContent = word;
+        tempSpan.textContent = word + " /> "; // Incluir el cierre para calcular el ancho total
         const width = tempSpan.getBoundingClientRect().width;
         maxWidth = Math.max(maxWidth, width);
       });
       
       // Añadir un pequeño margen y ajustar según el tamaño de pantalla
       const screenWidth = window.innerWidth;
-      let adjustedWidth = maxWidth + 10;
+      let adjustedWidth = maxWidth + 20; // Añadir margen adicional
       
       // Ajustes específicos por tamaño de pantalla
       if (screenWidth < 380) {
@@ -161,19 +163,20 @@
                        
       adjustedWidth = Math.max(adjustedWidth, minWidth);
       
-      typingContainer.style.minWidth = `${adjustedWidth}px`;
+      typingAnimation.style.minWidth = `${adjustedWidth}px`;
       document.body.removeChild(tempSpan);
     }
 
     function animateTyping() {
-      if (!typewriterElement) return;
+      if (!typingText) return;
 
       const currentWord = typingConfig.words[state.wordIndex];
       state.charIndex = state.isDeleting 
         ? state.charIndex - 1 
         : state.charIndex + 1;
 
-      typewriterElement.textContent = currentWord.substring(0, state.charIndex);
+      // Actualiza solo el texto, dejando el cursor y el cierre /> donde están
+      typingText.textContent = currentWord.substring(0, state.charIndex);
 
       let typingSpeed = state.isDeleting ? typingConfig.deleteSpeed : typingConfig.typeSpeed;
 
@@ -189,8 +192,10 @@
     }
 
     function initTypingEffect() {
-      typewriterElement = document.getElementById('typewriter');
-      if (typewriterElement) {
+      typingAnimation = document.getElementById('typing-animation');
+      typingText = document.getElementById('typing-text');
+      
+      if (typingAnimation && typingText) {
         setOptimalContainerWidth();
         state = { wordIndex: 0, charIndex: 0, isDeleting: false };
         animateTyping();
@@ -208,7 +213,7 @@
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'hidden' && timeoutId) {
         clearTimeout(timeoutId);
-      } else if (document.visibilityState === 'visible' && typewriterElement) {
+      } else if (document.visibilityState === 'visible' && typingText) {
         animateTyping();
       }
     });
