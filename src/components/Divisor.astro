@@ -1,0 +1,47 @@
+---
+// Divisor.astro
+interface Props {
+  topColor?: string;
+  bottomColor?: string;
+  topHeight?: string;
+  bottomHeight?: string;
+  imageSrc?: string; // Hacemos imageSrc opcional
+  imageAlt?: string; // Hacemos imageAlt opcional
+  imageMaxWidth?: string;
+}
+
+const {
+  topColor = "bg-oscuro",
+  bottomColor = "bg-gris",
+  // Altura reducida en móviles y aumenta progresivamente
+  topHeight = "h-16 sm:h-24 md:h-32 lg:h-40", 
+  // Altura reducida en móviles y aumenta progresivamente
+  bottomHeight = "h-24 sm:h-32 md:h-40 lg:h-44",
+  imageSrc = "/img/fondo.png", // Valor por defecto
+  imageAlt = "Imagen destacada", // Valor por defecto
+  imageMaxWidth = "max-w-6xl"
+} = Astro.props;
+---
+
+<div class="relative w-full">
+  <!-- Contenedor de los dos colores -->
+  <div class="flex flex-col w-full">
+    <!-- Color superior -->
+    <div class={`w-full ${topHeight} ${topColor}`}></div>
+    <!-- Color inferior -->
+    <div class={`w-full ${bottomHeight} ${bottomColor}`}></div>
+  </div>
+  
+  {imageSrc && (
+    <!-- Imagen centrada sobre los dos colores -->
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full">
+      <div class={`${imageMaxWidth} mx-auto px-3 sm:px-4 md:px-6 lg:px-8`}>
+        <img 
+          src={imageSrc}
+          alt={imageAlt}
+          class="w-full h-auto rounded-lg shadow-xl"
+        />
+      </div>
+    </div>
+  )}
+</div>
